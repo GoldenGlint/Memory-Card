@@ -60,6 +60,7 @@ async function getCards(){
 export function Game(){
     const[CurrScore, setCurrScore]=useState(0);
     const[BestScore, setBestScore]=useState(0);
+    const[Clicked, setClicked]=useState([]);
     const[PokemonList, setPokemonList]=useState([]);
     useEffect(()=>{
             console.log("Getting Cards");
@@ -70,8 +71,8 @@ export function Game(){
 
         <>
             <Title/>
-            <Score/>
-            <Grid PokemonList={PokemonList}/>
+            <Score CurrScore={CurrScore} BestScore={BestScore}/>
+            <Grid PokemonList={PokemonList} CurrScore={CurrScore} BestScore={BestScore} setCurrScore={setCurrScore} setBestScore={setBestScore} Clicked={Clicked} setClicked={setClicked}/>
 
         </> 
         
