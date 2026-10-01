@@ -2,10 +2,36 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import './App.css'
 
+class Pokemon{
+    id
+    name
+    photo
+    constructor(id, name, photo){
+        this.id=id;
+        this.name=name;
+        this.photo=photo;
+    }
+    get id(){
+        return this.id;
+    }
+    get name(){
+        return this.name;
+    }
+    get photo(){
+        return this.photo;
+    }
+
+
+
+};
+
 async function getPokemon(id){
   const response=await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   const pokeData=await response.json();
-  return pokeData;
+  const name=pokeData.name;
+  const photo=pokeData.sprites.other["official-artwork"].front_default;
+  const poke=new Pokemon(id, name, photo)
+  return poke;
 }
 
 async function getCards(){
@@ -19,10 +45,12 @@ async function getCards(){
         numbers.push(num);
         let pokemon= await getPokemon(num);
         cards.push(pokemon);
-        console.log(pokemon);
+        //console.log(pokemon);
 
       }
     }
+    console.log("Number of cards:", cards.length);
+    console.log(cards);
     return cards;
 }
 
