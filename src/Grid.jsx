@@ -4,8 +4,21 @@ import './App.css'
 
 
 
-export function Grid({PokemonList, CurrScore, BestScore, setCurrScore, setBestScore, Clicked, setClicked}){
-    function press(Pokemon){
+export function Grid({PokemonList, setPokemonList, CurrScore, BestScore, setCurrScore, setBestScore, Clicked, setClicked, getCards}){
+    function shufflePokemon() {
+        setPokemonList(prevList => {
+            const shuffled = [...prevList];
+
+            for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            return shuffled;
+        });
+    }
+    async function press(Pokemon){
         console.log("Button Clicked");
         let currID=Pokemon.id;
         console.log(currID);
@@ -13,6 +26,9 @@ export function Grid({PokemonList, CurrScore, BestScore, setCurrScore, setBestSc
             console.log("Game Over Stuff");
             setBestScore((prevBestScore)=>(Math.max(prevBestScore, CurrScore)));
             setCurrScore(0);
+            let newPokemonList=await getCards();
+            setPokemonList(newPokemonList);
+
 
         }
         else{
@@ -21,6 +37,7 @@ export function Grid({PokemonList, CurrScore, BestScore, setCurrScore, setBestSc
             setClicked((prevClick)=>{
                 return [...prevClick, currID];
             })
+            shufflePokemon();
 
         }
     

@@ -72,7 +72,7 @@ export function Game(){
         <>
             <Title/>
             <Score CurrScore={CurrScore} BestScore={BestScore}/>
-            <Grid PokemonList={PokemonList} CurrScore={CurrScore} BestScore={BestScore} setCurrScore={setCurrScore} setBestScore={setBestScore} Clicked={Clicked} setClicked={setClicked}/>
+            <Grid PokemonList={PokemonList} setPokemonList={setPokemonList} CurrScore={CurrScore} BestScore={BestScore} setCurrScore={setCurrScore} setBestScore={setBestScore} Clicked={Clicked} setClicked={setClicked} getCards={getCards}/>
 
         </> 
         
