@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import './App.css'
+import {Grid} from "./Grid"
+import {Title} from "./Title"
+import {Score} from "./Score"
 
 class Pokemon{
     id
@@ -57,16 +60,20 @@ async function getCards(){
 export function Game(){
     const[CurrScore, setCurrScore]=useState(0);
     const[BestScore, setBestScore]=useState(0);
-    const[Cards, setCards]=useState([]);
+    const[PokemonList, setPokemonList]=useState([]);
     useEffect(()=>{
             console.log("Getting Cards");
-            getCards();
+            getCards().then(setPokemonList);
         }, [])
 
     return(
 
-        
-        <h1>Hello World</h1>
+        <>
+            <Title/>
+            <Score/>
+            <Grid PokemonList={PokemonList}/>
+
+        </> 
         
     )
 }
