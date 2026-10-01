@@ -28,6 +28,7 @@ export function Grid({PokemonList, setPokemonList, CurrScore, BestScore, setCurr
             setCurrScore(0);
             let newPokemonList=await getCards();
             setPokemonList(newPokemonList);
+            setClicked([]);
 
 
         }
